@@ -1,0 +1,3991 @@
+<!DOCTYPE html>
+
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Let's Learn</title>
+
+<style>
+
+*{
+
+    box-sizing:border-box;
+
+    margin:0;
+
+    padding:0;
+
+}
+
+body{
+
+    font-family:"Comic Sans MS","Trebuchet MS",sans-serif;
+
+    min-height:100vh;
+
+    color:#26354d;
+
+    background:linear-gradient(135deg,#8ed8ff,#d9f8ff,#fff1a8);
+
+    overflow-x:hidden;
+
+}
+
+button{
+
+    font-family:inherit;
+
+    border:0;
+
+    cursor:pointer;
+
+}
+
+.screen{
+
+    display:none;
+
+    min-height:100vh;
+
+    padding:25px;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.screen.active{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+.cloud{
+
+    position:absolute;
+
+    font-size:65px;
+
+    opacity:.7;
+
+    pointer-events:none;
+
+    animation:cloudMove 14s linear infinite;
+
+}
+
+.cloud.c1{top:8%;left:-100px}
+
+.cloud.c2{top:28%;left:40%;animation-delay:5s}
+
+.cloud.c3{top:55%;right:-100px;animation-delay:8s}
+
+@keyframes cloudMove{
+
+    from{transform:translateX(-50px)}
+
+    to{transform:translateX(110vw)}
+
+}
+
+.star{
+
+    position:absolute;
+
+    font-size:25px;
+
+    animation:twinkle 1.5s infinite alternate;
+
+}
+
+@keyframes twinkle{
+
+    from{transform:scale(.7);opacity:.4}
+
+    to{transform:scale(1.2) rotate(15deg);opacity:1}
+
+}
+
+/* ================= HOME ================= */
+
+.logo{
+
+    text-align:center;
+
+    margin-top:30px;
+
+    z-index:2;
+
+    animation:bounce 2s infinite;
+
+}
+
+.logo-icon{
+
+    font-size:75px;
+
+}
+
+.logo h1{
+
+    font-size:52px;
+
+    color:#ff6872;
+
+    text-shadow:4px 4px white;
+
+}
+
+.logo p{
+
+    font-size:19px;
+
+    font-weight:bold;
+
+}
+
+@keyframes bounce{
+
+    50%{transform:translateY(-8px)}
+
+}
+
+.mascots{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin:30px 0;
+
+    z-index:2;
+
+}
+
+.mascot{
+
+    width:105px;
+
+    height:105px;
+
+    border-radius:28px;
+
+    background:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:60px;
+
+    box-shadow:0 8px 20px #0002;
+
+    animation:floatMascot 2s infinite ease-in-out;
+
+}
+
+.mascot:nth-child(2){animation-delay:.2s}
+
+.mascot:nth-child(3){animation-delay:.4s}
+
+.mascot:nth-child(4){animation-delay:.6s}
+
+.mascot:nth-child(5){animation-delay:.8s}
+
+@keyframes floatMascot{
+
+    50%{transform:translateY(-10px) rotate(3deg)}
+
+}
+
+.main-btn{
+
+    background:#ff8a3d;
+
+    color:white;
+
+    padding:16px 40px;
+
+    border-radius:50px;
+
+    font-size:21px;
+
+    font-weight:bold;
+
+    box-shadow:0 6px 0 #d86121;
+
+}
+
+.main-btn:active{
+
+    transform:translateY(4px);
+
+    box-shadow:0 2px 0 #d86121;
+
+}
+
+.secondary-btn{
+
+    background:white;
+
+    padding:11px 23px;
+
+    border-radius:30px;
+
+    font-weight:bold;
+
+    box-shadow:0 4px 12px #0002;
+
+}
+
+.panel{
+
+    width:min(1050px,96%);
+
+    background:#ffffffdf;
+
+    backdrop-filter:blur(10px);
+
+    padding:25px;
+
+    border-radius:35px;
+
+    box-shadow:0 10px 30px #0002;
+
+    margin-top:20px;
+
+    z-index:2;
+
+}
+
+.title{
+
+    text-align:center;
+
+    color:#ff6872;
+
+    margin-bottom:20px;
+
+    font-size:30px;
+
+}
+
+
+.mode-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.mode-card{background:#fff;border-radius:26px;padding:25px;text-align:center;box-shadow:0 6px 15px #0002;transition:.2s}
+.mode-card:hover{transform:translateY(-5px)}
+.mode-card .mode-icon{font-size:60px}
+.mode-card h3{color:#ff6872;font-size:24px;margin:10px}
+.mode-card p{line-height:1.5;margin-bottom:15px}
+.social-prompt{background:#fff;border-radius:22px;padding:22px;text-align:center;margin-bottom:18px}
+.social-options{display:grid;grid-template-columns:1fr;gap:12px}
+.social-option{background:white;border-radius:18px;padding:16px;font-size:18px;text-align:left;box-shadow:0 4px 10px #0001}
+.social-option.correct{background:#b7f2c1}
+.social-option.wrong{background:#ffc2ca}
+.social-tip{background:#fff8d9;border-radius:18px;padding:15px;margin-top:15px;line-height:1.5}
+@media(max-width:600px){.mode-grid{grid-template-columns:1fr}}
+
+/* ================= SETTINGS ================= */
+
+.settings-row{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:18px;
+
+}
+
+.setting{
+
+    min-width:220px;
+
+    background:#f5fcff;
+
+    border-radius:22px;
+
+    padding:20px;
+
+    text-align:center;
+
+}
+
+.setting h3{
+
+    margin-bottom:10px;
+
+}
+
+select,
+
+input[type="range"]{
+
+    width:100%;
+
+    padding:9px;
+
+}
+
+/* ================= CHARACTER ================= */
+
+.char-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:15px;
+
+}
+
+.char-card{
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:18px 8px;
+
+    box-shadow:0 6px 15px #0002;
+
+    transition:.2s;
+
+}
+
+.char-card:hover{
+
+    transform:translateY(-7px) rotate(1deg);
+
+}
+
+.char-icon{
+
+    font-size:60px;
+
+}
+
+.char-card h3{
+
+    color:#ff6872;
+
+    margin:7px 0;
+
+}
+
+.char-card p{
+
+    font-size:13px;
+
+}
+
+/* ================= SCENE PILIH KARAKTER ================= */
+
+.character-scene{
+
+    width:100%;
+
+    height:235px;
+
+    margin-top:25px;
+
+    border-radius:30px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+
+        linear-gradient(
+
+            to bottom,
+
+            #bcecff 0%,
+
+            #eafaff 60%,
+
+            #b7ea87 61%,
+
+            #8fd263 100%
+
+        );
+
+    box-shadow:
+
+        inset 0 -15px 0 #7bc456,
+
+        0 7px 20px #0002;
+
+}
+
+.scene-cloud{
+
+    position:absolute;
+
+    font-size:42px;
+
+    opacity:.8;
+
+    animation:sceneCloud 13s linear infinite;
+
+}
+
+.scene-cloud.one{
+
+    left:-70px;
+
+    top:25px;
+
+}
+
+.scene-cloud.two{
+
+    left:35%;
+
+    top:70px;
+
+    animation-delay:5s;
+
+}
+
+@keyframes sceneCloud{
+
+    from{transform:translateX(-80px)}
+
+    to{transform:translateX(900px)}
+
+}
+
+.scene-sun{
+
+    position:absolute;
+
+    top:15px;
+
+    right:35px;
+
+    font-size:46px;
+
+    animation:sun 2s infinite alternate;
+
+}
+
+@keyframes sun{
+
+    to{
+
+        transform:scale(1.12) rotate(8deg);
+
+    }
+
+}
+
+.scene-flower{
+
+    position:absolute;
+
+    bottom:18px;
+
+    font-size:28px;
+
+}
+
+.f1{left:7%}
+
+.f2{left:27%}
+
+.f3{right:27%}
+
+.f4{right:7%}
+
+.scene-star{
+
+    position:absolute;
+
+    font-size:21px;
+
+    animation:sceneStar 1.3s infinite alternate;
+
+}
+
+.ss1{left:20%;top:35px}
+
+.ss2{left:57%;top:25px}
+
+.ss3{right:20%;top:60px}
+
+@keyframes sceneStar{
+
+    from{
+
+        opacity:.4;
+
+        transform:scale(.7);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1.2);
+
+    }
+
+}
+
+.scene-character{
+
+    position:absolute;
+
+    bottom:35px;
+
+    font-size:60px;
+
+    z-index:5;
+
+    filter:drop-shadow(0 5px 3px #0002);
+
+}
+
+.scene-lumi{
+
+    left:7%;
+
+    animation:hop 1.5s infinite ease-in-out;
+
+}
+
+.scene-nara{
+
+    left:27%;
+
+    animation:run 2s infinite ease-in-out;
+
+}
+
+.scene-bimo{
+
+    left:47%;
+
+    animation:bounceBear 1.5s infinite ease-in-out;
+
+}
+
+.scene-sky{
+
+    left:67%;
+
+    bottom:75px;
+
+    animation:fly 2.4s infinite ease-in-out;
+
+}
+
+.scene-luna{
+
+    right:7%;
+
+    animation:walk 2.5s infinite ease-in-out;
+
+}
+
+@keyframes hop{
+
+    0%,100%{transform:translateY(0)}
+
+    45%{transform:translateY(-27px)}
+
+}
+
+@keyframes run{
+
+    0%,100%{transform:translateX(-8px)}
+
+    50%{transform:translateX(15px)}
+
+}
+
+@keyframes bounceBear{
+
+    0%,100%{
+
+        transform:translateY(0) scale(1);
+
+    }
+
+    50%{
+
+        transform:translateY(-18px) scale(1.05);
+
+    }
+
+}
+
+@keyframes fly{
+
+    0%,100%{
+
+        transform:translate(0,0) rotate(-3deg);
+
+    }
+
+    50%{
+
+        transform:translate(18px,-25px) rotate(4deg);
+
+    }
+
+}
+
+@keyframes walk{
+
+    0%,100%{transform:translateX(-10px)}
+
+    50%{transform:translateX(12px)}
+
+}
+
+/* ================= LEVEL ================= */
+
+.level-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+.level-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    box-shadow:0 6px 15px #0002;
+
+    transition:.2s;
+
+}
+
+.level-card:hover{
+
+    transform:translateY(-7px);
+
+}
+
+.level-card h3{
+
+    color:#ff6872;
+
+    font-size:24px;
+
+}
+
+.level-card p{
+
+    margin:10px 0 18px;
+
+}
+
+/* ================= GAME ================= */
+
+.game-panel{
+
+    width:min(1000px,96%);
+
+}
+
+.game-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
+
+}
+
+.stat{
+
+    background:white;
+
+    padding:10px 17px;
+
+    border-radius:25px;
+
+    font-weight:bold;
+
+    box-shadow:0 4px 12px #0002;
+
+}
+
+.stat.score{
+
+    color:#ff7b32;
+
+}
+
+.stat.target{
+
+    color:#4285f4;
+
+}
+
+.stat.lives{
+
+    color:#ed4f65;
+
+}
+
+.question-box{
+
+    background:#fff;
+
+    border-radius:25px;
+
+    padding:20px;
+
+    text-align:center;
+
+    box-shadow:0 5px 15px #0002;
+
+    margin-bottom:20px;
+
+}
+
+.question-box h2{
+
+    color:#ff6872;
+
+    margin-bottom:12px;
+
+}
+
+.listen-btn{
+
+    background:#6c8cff;
+
+    color:white;
+
+    padding:10px 18px;
+
+    border-radius:25px;
+
+    font-weight:bold;
+
+}
+
+.game-area{
+
+    min-height:320px;
+
+    background:#ffffffcc;
+
+    border-radius:30px;
+
+    padding:25px;
+
+}
+
+/* ================= LUMI MATCHING ================= */
+
+.match-wrapper{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+
+}
+
+.match-column{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+.match-column h3{
+
+    text-align:center;
+
+    margin-bottom:5px;
+
+}
+
+#nameColumn,
+
+#pictureColumn{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+.match-name,
+
+.match-picture{
+
+    min-height:75px;
+
+    background:white;
+
+    border-radius:20px;
+
+    box-shadow:0 5px 12px #0002;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    transition:.2s;
+
+}
+
+.match-picture{
+
+    font-size:48px;
+
+}
+
+.match-name.selected{
+
+    background:#ffe08a;
+
+    transform:scale(1.03);
+
+}
+
+.match-name.matched,
+
+.match-picture.matched{
+
+    background:#b8f2c2;
+
+    pointer-events:none;
+
+}
+
+.match-name.wrong,
+
+.match-picture.wrong{
+
+    background:#ffc0c8;
+
+    animation:shake .35s;
+
+}
+
+@keyframes shake{
+
+    25%{transform:translateX(-7px)}
+
+    50%{transform:translateX(7px)}
+
+    75%{transform:translateX(-5px)}
+
+}
+
+/* ================= CHOICE ================= */
+
+.choice-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+}
+
+.choice{
+
+    background:white;
+
+    border-radius:25px;
+
+    min-height:110px;
+
+    font-size:22px;
+
+    box-shadow:0 6px 15px #0002;
+
+    transition:.2s;
+
+}
+
+.choice:hover{
+
+    transform:scale(1.03);
+
+}
+
+.choice.correct{
+
+    background:#b7f2c1;
+
+    animation:correct .5s;
+
+}
+
+.choice.wrong{
+
+    background:#ffc2ca;
+
+    animation:shake .35s;
+
+}
+
+@keyframes correct{
+
+    50%{transform:scale(1.08)}
+
+}
+
+/* ================= BIMO ================= */
+
+.sequence{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:25px;
+
+}
+
+.number{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:18px;
+
+    background:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    box-shadow:0 5px 12px #0002;
+
+}
+
+.number.missing{
+
+    background:#ffe28a;
+
+}
+
+.number-choice{
+
+    background:white;
+
+    padding:15px 25px;
+
+    border-radius:20px;
+
+    font-size:21px;
+
+    font-weight:bold;
+
+    box-shadow:0 5px 12px #0002;
+
+    margin:5px;
+
+}
+
+/* ================= LUNA MEMORY ================= */
+
+.memory-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:12px;
+
+    max-width:700px;
+
+    margin:auto;
+
+}
+
+.memory-card{
+
+    height:105px;
+
+    border-radius:20px;
+
+    background:#769cff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:45px;
+
+    position:relative;
+
+    box-shadow:0 5px 12px #0002;
+
+    transition:.25s;
+
+}
+
+.memory-card .memory-content{
+
+    display:none;
+
+}
+
+.memory-card .question-mark{
+
+    color:white;
+
+    font-size:38px;
+
+}
+
+.memory-card.open,
+
+.memory-card.matched{
+
+    background:white;
+
+}
+
+.memory-card.open .question-mark,
+
+.memory-card.matched .question-mark{
+
+    display:none;
+
+}
+
+.memory-card.open .memory-content,
+
+.memory-card.matched .memory-content{
+
+    display:block;
+
+}
+
+.memory-card.matched{
+
+    box-shadow:0 0 0 4px #7ed68d;
+
+    pointer-events:none;
+
+}
+
+/* ================= FEEDBACK ================= */
+
+.feedback{
+
+    text-align:center;
+
+    min-height:45px;
+
+    padding:12px;
+
+    font-size:19px;
+
+    font-weight:bold;
+
+}
+
+.feedback.good{
+
+    color:#229447;
+
+}
+
+.feedback.bad{
+
+    color:#e44e60;
+
+}
+
+/* ================= GAME SCENE ================= */
+
+.game-scene{
+
+    width:100%;
+
+    height:170px;
+
+    margin-top:10px;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:
+
+        linear-gradient(
+
+            to bottom,
+
+            #c8efff 0%,
+
+            #edfbff 60%,
+
+            #aee47e 61%,
+
+            #83c95e 100%
+
+        );
+
+}
+
+.game-scene .moving-friend{
+
+    position:absolute;
+
+    bottom:28px;
+
+    left:45%;
+
+    font-size:60px;
+
+    z-index:3;
+
+    animation:gameFriend 2s infinite ease-in-out;
+
+}
+
+.game-scene .scene-item{
+
+    position:absolute;
+
+    font-size:27px;
+
+    bottom:18px;
+
+}
+
+.game-scene .item1{left:8%}
+
+.game-scene .item2{left:23%}
+
+.game-scene .item3{right:22%}
+
+.game-scene .item4{right:8%}
+
+.game-scene .game-cloud{
+
+    position:absolute;
+
+    top:20px;
+
+    left:-70px;
+
+    font-size:40px;
+
+    animation:gameCloud 11s linear infinite;
+
+}
+
+@keyframes gameCloud{
+
+    to{
+
+        transform:translateX(900px);
+
+    }
+
+}
+
+@keyframes gameFriend{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-20px);
+
+    }
+
+}
+
+/* ================= RESULT ================= */
+
+.result{
+
+    text-align:center;
+
+    padding:30px;
+
+}
+
+.result .big{
+
+    font-size:70px;
+
+    margin-bottom:10px;
+
+}
+
+.result h2{
+
+    color:#ff6872;
+
+    margin-bottom:10px;
+
+}
+
+.result-score{
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    margin:15px;
+
+}
+
+.result-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+}
+
+/* ================= SLIDE ================= */
+
+.slide-in{
+
+    animation:slideIn .4s ease;
+
+}
+
+@keyframes slideIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(60px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:800px){
+
+    .char-grid{
+
+        grid-template-columns:repeat(3,1fr);
+
+    }
+
+    .level-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .memory-grid{
+
+        grid-template-columns:repeat(5,1fr);
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .logo h1{
+
+        font-size:40px;
+
+    }
+
+    .char-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .match-wrapper{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .choice-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .memory-card{
+
+        height:70px;
+
+        font-size:32px;
+
+    }
+
+    .memory-card .question-mark{
+
+        font-size:28px;
+
+    }
+
+    .character-scene{
+
+        height:190px;
+
+    }
+
+    .scene-character{
+
+        font-size:45px;
+
+    }
+
+    .game-scene{
+
+        height:140px;
+
+    }
+
+    .game-scene .moving-friend{
+
+        font-size:45px;
+
+    }
+
+}
+
+
+.level-card button:disabled{background:#cbd5e1!important;color:#64748b!important;cursor:not-allowed;opacity:.85;transform:none;box-shadow:none}
+.level-card.is-locked{opacity:.78}
+.level-card.is-locked h3::after{content:" 🔒"}
+.level-card.is-complete h3::after{content:" ✅"}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="screen active">
+
+<div class="cloud c1">☁️</div>
+
+<div class="cloud c2">☁️</div>
+
+<div class="cloud c3">☁️</div>
+
+<div class="star" style="left:10%;top:15%">⭐</div>
+
+<div class="star" style="right:12%;top:18%">✨</div>
+
+<div class="star" style="left:20%;top:70%">🌟</div>
+
+<div class="logo">
+
+    <div class="logo-icon">📚✨</div>
+
+    <h1>Let's Learn</h1>
+
+    <p>Belajar jadi lebih seru bersama teman!</p>
+
+</div>
+
+<div class="mascots">
+
+    <div class="mascot">🐰</div>
+
+    <div class="mascot">🐿️</div>
+
+    <div class="mascot">🐻</div>
+
+    <div class="mascot">🦅</div>
+
+    <div class="mascot">🐢</div>
+
+</div>
+
+<button class="main-btn" onclick="showScreen('mode')">
+
+    🚀 Mulai Belajar
+
+</button>
+
+<br>
+
+<button class="secondary-btn" onclick="showScreen('settings')">
+
+    ⚙️ Pengaturan
+
+</button>
+
+</section>
+
+<!-- ================= SETTINGS ================= -->
+
+<section id="settings" class="screen">
+
+<div class="panel">
+
+<h2 class="title">⚙️ Pengaturan</h2>
+
+<div class="settings-row">
+
+<div class="setting">
+
+<h3>🌐 Bahasa</h3>
+
+<select id="language" onchange="changeLanguage()">
+
+<option value="id">Bahasa Indonesia</option>
+
+<option value="en">English</option>
+
+</select>
+
+</div>
+
+<div class="setting">
+
+<h3>🎵 Musik</h3>
+
+<input
+
+id="musicVolume"
+
+type="range"
+
+min="0"
+
+max="100"
+
+value="50"
+
+oninput="musicVolume=this.value/100"
+
+>
+
+</div>
+
+<div class="setting">
+
+<h3>📱 Orientasi</h3>
+
+<select id="orientation" onchange="changeOrientation()">
+
+<option value="auto">Otomatis</option>
+
+<option value="portrait">Portrait</option>
+
+<option value="landscape">Landscape</option>
+
+</select>
+
+</div>
+
+</div>
+
+<br>
+
+<button class="secondary-btn" onclick="showScreen('home')">
+
+⬅️ Kembali
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ================= CHARACTER ================= -->
+
+<section id="characters" class="screen">
+
+<div class="panel">
+
+<h2 class="title">🌟 Pilih Teman Belajarmu!</h2>
+
+<div class="char-grid">
+
+<button class="char-card" onclick="selectCharacter('lumi')">
+
+<div class="char-icon">🐰</div>
+
+<h3>Lumi</h3>
+
+<p>🧠 Pintar & Enerjik</p>
+
+</button>
+
+<button class="char-card" onclick="selectCharacter('nara')">
+
+<div class="char-icon">🐿️</div>
+
+<h3>Nara</h3>
+
+<p>🎨 Kreatif</p>
+
+</button>
+
+<button class="char-card" onclick="selectCharacter('bimo')">
+
+<div class="char-icon">🐻</div>
+
+<h3>Bimo</h3>
+
+<p>💪 Sabar & Stabil</p>
+
+</button>
+
+<button class="char-card" onclick="selectCharacter('sky')">
+
+<div class="char-icon">🦅</div>
+
+<h3>Sky</h3>
+
+<p>🔥 Berani & Fokus</p>
+
+</button>
+
+<button class="char-card" onclick="selectCharacter('luna')">
+
+<div class="char-icon">🐢</div>
+
+<h3>Luna</h3>
+
+<p>🎯 Teliti & Konsisten</p>
+
+</button>
+
+</div>
+<br><button class="secondary-btn" onclick="showScreen('mode')">⬅️ Kembali ke Pilihan Materi</button>
+
+<div class="character-scene">
+
+<div class="scene-sun">☀️</div>
+
+<div class="scene-cloud one">☁️</div>
+
+<div class="scene-cloud two">☁️</div>
+
+<div class="scene-star ss1">⭐</div>
+
+<div class="scene-star ss2">✨</div>
+
+<div class="scene-star ss3">🌟</div>
+
+<div class="scene-flower f1">🌷</div>
+
+<div class="scene-flower f2">🌼</div>
+
+<div class="scene-flower f3">🌸</div>
+
+<div class="scene-flower f4">🌻</div>
+
+<div class="scene-character scene-lumi">🐰</div>
+
+<div class="scene-character scene-nara">🐿️</div>
+
+<div class="scene-character scene-bimo">🐻</div>
+
+<div class="scene-character scene-sky">🦅</div>
+
+<div class="scene-character scene-luna">🐢</div>
+
+</div>
+
+<br>
+
+<button class="secondary-btn" onclick="showScreen('home')">
+
+⬅️ Kembali
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= MODE BELAJAR ================= -->
+<section id="mode" class="screen">
+  <div class="panel">
+    <h2 class="title">🌈 Mau Belajar Apa Hari Ini?</h2>
+    <p style="text-align:center;margin-bottom:20px">Pilih permainan yang ingin kamu coba. Kamu boleh belajar pelan-pelan!</p>
+    <div class="mode-grid">
+      <div class="mode-card">
+        <div class="mode-icon">📚</div><h3>Materi Akademik</h3>
+        <p>Belajar nama benda, mengenal gambar, membaca kata sederhana, dan mengenal angka.</p>
+        <button class="main-btn" onclick="chooseAcademicMode()">Ayo Belajar</button>
+      </div>
+      <div class="mode-card">
+        <div class="mode-icon">🤝</div><h3>Materi Sosial</h3>
+        <p>Berlatih menyapa teman, meminta bantuan, bergiliran, menjaga diri, dan memahami perasaan.</p>
+        <button class="main-btn" onclick="setLearningMode('social')">Ayo Berlatih</button>
+      </div>
+    </div>
+    <br><button class="secondary-btn" onclick="showScreen('characters')">⬅️ Kembali</button>
+  </div>
+</section>
+
+<!-- ================= LEVEL ================= -->
+
+<section id="levels" class="screen">
+
+<div class="panel">
+
+<h2 class="title">🎯 Pilih Tingkat Kesulitan</h2>
+
+<div class="level-grid">
+
+<div class="level-card">
+
+<div style="font-size:55px">🌱</div>
+
+<h3>Level 1</h3>
+
+<p>⭐ Mudah</p>
+
+<button class="main-btn" data-level-button="1" onclick="startGame(1)">
+
+Mulai
+
+</button>
+
+</div>
+
+<div class="level-card">
+
+<div style="font-size:55px">🌿</div>
+
+<h3>Level 2</h3>
+
+<p>⭐⭐ Sedang</p>
+
+<button class="main-btn" data-level-button="2" onclick="startGame(2)">
+
+Mulai
+
+</button>
+
+</div>
+
+<div class="level-card">
+
+<div style="font-size:55px">🌳</div>
+
+<h3>Level 3</h3>
+
+<p>⭐⭐⭐ Sulit</p>
+
+<button class="main-btn" data-level-button="3" onclick="startGame(3)">
+
+Mulai
+
+</button>
+
+</div>
+
+</div>
+
+<br>
+
+<button class="secondary-btn" onclick="showScreen('characters')">
+
+⬅️ Kembali
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ================= GAME ================= -->
+
+<section id="game" class="screen">
+
+<div class="panel game-panel">
+
+<div class="game-header">
+
+<div class="stat score">
+
+⭐ Nilai: <span id="score">0</span>
+
+</div>
+
+<div class="stat target">
+
+🎯 Target: <span id="targetScore">50</span>
+
+</div>
+
+<div class="stat lives">
+
+❤️ Nyawa: <span id="lives">5</span>
+
+</div>
+
+</div>
+
+<div class="question-box">
+
+<h2 id="questionText">Pertanyaan</h2>
+
+<button class="listen-btn" onclick="speakCurrentQuestion()">
+
+🔊 Dengarkan
+
+</button>
+
+</div>
+
+<div id="gameArea" class="game-area slide-in"></div>
+
+<div id="feedback" class="feedback"></div>
+
+<div id="gameScene" class="game-scene">
+
+<div class="game-cloud">☁️</div>
+
+<div class="scene-item item1">🌼</div>
+
+<div class="scene-item item2">🌿</div>
+
+<div class="scene-item item3">🌸</div>
+
+<div class="scene-item item4">🌻</div>
+
+<div id="movingFriend" class="moving-friend">🐰</div>
+
+</div>
+
+<br>
+
+<button class="secondary-btn" onclick="backToLevels()">
+
+⬅️ Keluar
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ================= RESULT ================= -->
+
+<section id="result" class="screen">
+
+<div class="panel">
+
+<div class="result">
+
+<div class="big" id="resultEmoji">🎉</div>
+
+<h2 id="resultTitle">Hebat!</h2>
+
+<p id="resultMessage">
+
+Kamu sudah menyelesaikan permainan.
+
+</p>
+
+<div class="result-score">
+
+⭐ Nilai: <span id="finalScore">0</span> / 100
+
+</div>
+
+<div class="result-buttons">
+
+<button class="main-btn" onclick="retryGame()">
+
+🔄 Main Lagi
+
+</button>
+
+<button class="secondary-btn" onclick="showScreen('levels')">
+
+🎯 Pilih Level
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+/* =====================================================
+
+   DATA
+
+===================================================== */
+
+const words = [
+
+    {name:"Apel",emoji:"🍎"},
+
+    {name:"Pisang",emoji:"🍌"},
+
+    {name:"Jeruk",emoji:"🍊"},
+
+    {name:"Semangka",emoji:"🍉"},
+
+    {name:"Stroberi",emoji:"🍓"},
+
+    {name:"Anggur",emoji:"🍇"},
+
+    {name:"Mangga",emoji:"🥭"},
+
+    {name:"Nanas",emoji:"🍍"},
+
+    {name:"Kucing",emoji:"🐱"},
+
+    {name:"Anjing",emoji:"🐶"},
+
+    {name:"Kelinci",emoji:"🐰"},
+
+    {name:"Ikan",emoji:"🐟"},
+
+    {name:"Burung",emoji:"🐦"},
+
+    {name:"Kupu-kupu",emoji:"🦋"},
+
+    {name:"Matahari",emoji:"☀️"},
+
+    {name:"Bulan",emoji:"🌙"},
+
+    {name:"Bintang",emoji:"⭐"},
+
+    {name:"Bunga",emoji:"🌸"},
+
+    {name:"Pohon",emoji:"🌳"},
+
+    {name:"Mobil",emoji:"🚗"},
+
+    {name:"Bus",emoji:"🚌"},
+
+    {name:"Pesawat",emoji:"✈️"},
+
+    {name:"Sepeda",emoji:"🚲"},
+
+    {name:"Buku",emoji:"📚"},
+
+    {name:"Pensil",emoji:"✏️"},
+
+    {name:"Tas",emoji:"🎒"},
+
+    {name:"Bola",emoji:"⚽"},
+
+    {name:"Rumah",emoji:"🏠"},
+
+    {name:"Es Krim",emoji:"🍦"},
+
+    {name:"Kue",emoji:"🍰"}
+
+];
+
+const englishWords = [
+
+    {name:"Apple",emoji:"🍎"},
+
+    {name:"Banana",emoji:"🍌"},
+
+    {name:"Orange",emoji:"🍊"},
+
+    {name:"Watermelon",emoji:"🍉"},
+
+    {name:"Strawberry",emoji:"🍓"},
+
+    {name:"Grapes",emoji:"🍇"},
+
+    {name:"Mango",emoji:"🥭"},
+
+    {name:"Pineapple",emoji:"🍍"},
+
+    {name:"Cat",emoji:"🐱"},
+
+    {name:"Dog",emoji:"🐶"},
+
+    {name:"Rabbit",emoji:"🐰"},
+
+    {name:"Fish",emoji:"🐟"},
+
+    {name:"Bird",emoji:"🐦"},
+
+    {name:"Butterfly",emoji:"🦋"},
+
+    {name:"Sun",emoji:"☀️"},
+
+    {name:"Moon",emoji:"🌙"},
+
+    {name:"Star",emoji:"⭐"},
+
+    {name:"Flower",emoji:"🌸"},
+
+    {name:"Tree",emoji:"🌳"},
+
+    {name:"Car",emoji:"🚗"},
+
+    {name:"Bus",emoji:"🚌"},
+
+    {name:"Airplane",emoji:"✈️"},
+
+    {name:"Bicycle",emoji:"🚲"},
+
+    {name:"Book",emoji:"📚"},
+
+    {name:"Pencil",emoji:"✏️"},
+
+    {name:"Bag",emoji:"🎒"},
+
+    {name:"Ball",emoji:"⚽"},
+
+    {name:"House",emoji:"🏠"},
+
+    {name:"Ice Cream",emoji:"🍦"},
+
+    {name:"Cake",emoji:"🍰"}
+
+];
+
+/* =====================================================
+
+   STATE
+
+===================================================== */
+
+let currentCharacter = "lumi";
+let currentMode = "academic";
+let socialQuestion = null;
+
+let selectedLevel = 1;
+
+let score = 0;
+
+let lives = 5;
+
+let questionNumber = 0;
+
+let gameFinished = false;
+
+const TARGET_SCORE = 100;
+
+const QUESTIONS_PER_GAME = 10;
+
+let currentQuestionText = "";
+
+let musicVolume = .5;
+
+let lang = "id";
+
+let audioContext = null;
+
+let musicTimer = null;
+
+/* =====================================================
+
+   UTILITY
+
+===================================================== */
+
+function shuffle(array){
+
+    return [...array].sort(() => Math.random() - .5);
+
+}
+
+function getWords(){
+
+    return lang === "id" ? words : englishWords;
+
+}
+
+function getText(idText,enText){
+
+    return lang === "id" ? idText : enText;
+
+}
+
+/* =====================================================
+
+   SCREEN
+
+===================================================== */
+
+function showScreen(id){
+
+    document.querySelectorAll(".screen").forEach(screen=>{
+
+        screen.classList.remove("active");
+
+    });
+
+    const target = document.getElementById(id);
+
+    if(target){
+
+        target.classList.add("active");
+
+    }
+
+    stopSpeech();
+
+    if(id !== "game"){
+
+        stopMusic();
+
+    }
+
+}
+
+/* =====================================================
+
+   CHARACTER
+
+===================================================== */
+
+function selectCharacter(character){
+
+    currentCharacter = character;
+
+    renderCharacterScene(character);
+
+    setLearningMode("academic");
+
+}
+
+function chooseAcademicMode(){
+    currentMode = "academic";
+    showScreen("characters");
+}
+
+function renderCharacterScene(character){
+
+    const friend = document.getElementById("movingFriend");
+
+    if(!friend) return;
+
+    const data = {
+
+        lumi:"🐰",
+
+        nara:"🐿️",
+
+        bimo:"🐻",
+
+        sky:"🦅",
+
+        luna:"🐢"
+
+    };
+
+    friend.textContent = data[character] || "🐰";
+
+}
+
+/* =====================================================
+
+   START GAME
+
+===================================================== */
+
+
+const PROGRESS_KEY = "letsLearnProgress_v1";
+
+function getProgress(){
+    try {
+        return JSON.parse(localStorage.getItem(PROGRESS_KEY)) || {academic:1,social:1};
+    } catch(e) {
+        return {academic:1,social:1};
+    }
+}
+
+function highestUnlockedLevel(mode=currentMode){
+    const progress=getProgress();
+    return Math.max(1,Math.min(3,Number(progress[mode])||1));
+}
+
+function updateLevelLocks(){
+    const unlocked=highestUnlockedLevel(currentMode);
+    document.querySelectorAll("#levels .level-card").forEach((card,i)=>{
+        const level=i+1;
+        const button=card.querySelector("[data-level-button]");
+        const isLocked=level>unlocked;
+        card.classList.toggle("is-locked",isLocked);
+        card.classList.toggle("is-complete",level<unlocked);
+        if(button){
+            button.disabled=isLocked;
+            button.textContent=isLocked ? "🔒 Selesaikan Level " + (level-1) + " dulu" : (level<unlocked ? "✅ Main Lagi" : "Mulai");
+            button.title=isLocked ? "Selesaikan level sebelumnya terlebih dahulu" : "Mulai permainan";
+        }
+    });
+}
+
+function unlockNextLevel(){
+    const progress=getProgress();
+    const current=Number(progress[currentMode])||1;
+    if(selectedLevel>=current && selectedLevel<3){
+        progress[currentMode]=selectedLevel+1;
+        try { localStorage.setItem(PROGRESS_KEY,JSON.stringify(progress)); } catch(e) {}
+    }
+    updateLevelLocks();
+}
+
+function setLearningMode(mode){
+    currentMode = mode;
+    showScreen("levels");
+    const title = document.querySelector("#levels .title");
+    if(title) title.textContent = mode === "social" ? "🤝 Pilih Level Keterampilan Sosial" : "🎯 Pilih Tingkat Kesulitan";
+    const cards = document.querySelectorAll("#levels .level-card");
+    const descriptions = mode === "social"
+      ? ["Mengenal situasi sehari-hari dan memilih respons sederhana.","Memahami perasaan, aturan bersama, dan cara meminta bantuan.","Memecahkan situasi sosial dengan beberapa langkah."]
+      : ["Mudah","Sedang","Sulit"];
+    cards.forEach((card,i)=>{
+      const p=card.querySelector("p");
+      if(p) p.textContent = mode === "social" ? descriptions[i] : ["⭐ Mudah","⭐⭐ Sedang","⭐⭐⭐ Sulit"][i];
+    });
+    updateLevelLocks();
+}
+
+
+function startGame(level){
+
+    if(level > highestUnlockedLevel(currentMode)){
+        alert(getText("Selesaikan level sebelumnya terlebih dahulu, ya!", "Please complete the previous level first!"));
+        updateLevelLocks();
+        return;
+    }
+
+    selectedLevel = level;
+
+    score = 0;
+
+    lives = 5;
+
+    questionNumber = 0;
+
+    gameFinished = false;
+
+    document.getElementById("score").textContent = score;
+
+    document.getElementById("targetScore").textContent = TARGET_SCORE;
+
+    document.getElementById("lives").textContent = lives;
+
+    showScreen("game");
+
+    renderGameScene();
+
+    startMusic();
+
+    nextQuestion();
+
+}
+
+/* =====================================================
+
+   GAME SCENE
+
+===================================================== */
+
+function renderGameScene(){
+
+    const friend = document.getElementById("movingFriend");
+
+    const data = {
+
+        lumi:"🐰",
+
+        nara:"🐿️",
+
+        bimo:"🐻",
+
+        sky:"🦅",
+
+        luna:"🐢"
+
+    };
+
+    friend.textContent = currentMode === "social" ? "🤝" : data[currentCharacter];
+
+    const scene = document.getElementById("gameScene");
+
+    scene.querySelector(".item1").textContent =
+
+        currentCharacter === "lumi" ? "🥕" :
+
+        currentCharacter === "nara" ? "🌰" :
+
+        currentCharacter === "bimo" ? "🍯" :
+
+        currentCharacter === "sky" ? "🪶" :
+
+        "🌿";
+
+    scene.querySelector(".item2").textContent =
+
+        currentCharacter === "lumi" ? "🌼" :
+
+        currentCharacter === "nara" ? "🍂" :
+
+        currentCharacter === "bimo" ? "🌳" :
+
+        currentCharacter === "sky" ? "☁️" :
+
+        "🌸";
+
+    scene.querySelector(".item3").textContent =
+
+        currentCharacter === "lumi" ? "⭐" :
+
+        currentCharacter === "nara" ? "⭐" :
+
+        currentCharacter === "bimo" ? "⭐" :
+
+        currentCharacter === "sky" ? "☁️" :
+
+        "🌱";
+
+    scene.querySelector(".item4").textContent = "✨";
+
+}
+
+/* =====================================================
+
+   NEXT QUESTION
+
+===================================================== */
+
+function nextQuestion(){
+
+    if(gameFinished || lives <= 0) return;
+
+    if(questionNumber >= QUESTIONS_PER_GAME){
+
+        finishGame();
+
+        return;
+
+    }
+
+    questionNumber++;
+
+    const area = document.getElementById("gameArea");
+
+    area.classList.remove("slide-in");
+
+    void area.offsetWidth;
+
+    area.classList.add("slide-in");
+
+    document.getElementById("feedback").textContent = "";
+
+    document.getElementById("feedback").className = "feedback";
+
+    area.innerHTML = "";
+
+    if(currentMode === "social"){
+        renderSocialQuestion(area);
+    }
+    // Soal akademik diselingi latihan matematika dasar agar lebih bervariasi.
+    else if(questionNumber % 2 === 0){
+        renderMathQuestion(area);
+    }
+    else if(currentCharacter === "lumi"){
+
+        renderMatch(area);
+
+    }
+
+    else if(currentCharacter === "nara"){
+
+        renderChoice(area);
+
+    }
+
+    else if(currentCharacter === "bimo"){
+
+        renderNumberGame(area);
+
+    }
+
+    else if(currentCharacter === "sky"){
+
+        renderSky(area);
+
+    }
+
+    else if(currentCharacter === "luna"){
+
+        renderMemory(area);
+
+    }
+
+    setTimeout(()=>{
+
+        speakCurrentQuestion();
+
+    },350);
+
+}
+
+/* =====================================================
+
+   QUESTION
+
+===================================================== */
+
+
+/* =====================================================
+   MATERI SOSIAL: SITUASI SEHARI-HARI
+===================================================== */
+const socialBank = {
+  1: [
+    {q:"Kamu bertemu guru pada pagi hari. Apa yang bisa kamu lakukan?",o:["Menyapa dan mengucapkan selamat pagi","Berteriak keras","Berjalan sambil mendorong"],a:0,tip:"Menyapa dengan sopan adalah cara memulai interaksi yang baik."},
+    {q:"Temanmu meminjamkan pensil. Apa yang sebaiknya kamu katakan?",o:["Terima kasih","Cepat pergi!","Itu punyaku"],a:0,tip:"Ucapkan terima kasih saat seseorang membantumu."},
+    {q:"Kamu ingin memakai mainan yang sedang digunakan teman.",o:["Merebutnya","Meminta izin dan menunggu giliran","Menyembunyikannya"],a:1,tip:"Meminta izin dan bergiliran membantu semua orang bermain dengan nyaman."},
+    {q:"Kamu tidak memahami instruksi guru.",o:["Diam lalu menebak","Meminta guru mengulang dengan pelan","Mengganggu teman"],a:1,tip:"Kamu boleh meminta bantuan jika belum memahami sesuatu."},
+    {q:"Kamu tidak sengaja menyenggol teman.",o:["Meminta maaf dan memastikan teman baik-baik saja","Menyalahkan teman","Langsung pergi"],a:0,tip:"Meminta maaf menunjukkan bahwa kita peduli."},
+    {q:"Teman mengajakmu bermain bersama.",o:["Boleh, ayo bermain bersama","Kamu tidak boleh punya teman","Mendorongnya"],a:0,tip:"Kita dapat menjawab ajakan dengan ramah jika merasa nyaman."},
+    {q:"Kamu ingin berbicara saat teman sedang berbicara.",o:["Memotong dengan teriakan","Menunggu giliran berbicara","Menutup mulut teman"],a:1,tip:"Mendengarkan dan menunggu giliran membuat percakapan lebih nyaman."},
+    {q:"Kamu melihat sampah di dekat tempat dudukmu.",o:["Membuangnya ke tempat sampah","Melemparnya ke lantai","Menyelipkannya di meja teman"],a:0,tip:"Menjaga kebersihan adalah tanggung jawab bersama."},
+    {q:"Temanmu terlihat sedih.",o:["Menertawakannya","Bertanya dengan lembut apakah ia baik-baik saja","Mengambil barangnya"],a:1,tip:"Tunjukkan perhatian tanpa memaksa teman bercerita."},
+    {q:"Kamu membutuhkan bantuan membuka kotak makan.",o:["Meminta bantuan dengan sopan","Melempar kotak","Marah kepada semua orang"],a:0,tip:"Kamu boleh meminta bantuan dengan kata-kata yang baik."}
+    ,{q:"Saat ingin lewat, ada teman berdiri di depan pintu. Apa yang kamu katakan?",o:["Permisi, boleh aku lewat?","Minggir!","Mendorongnya"],a:0,tip:"Kata permisi membantu kita meminta jalan dengan sopan."}
+    ,{q:"Teman memberi hadiah kecil untukmu.",o:["Mengucapkan terima kasih","Mengatakan hadiahnya jelek","Merebut barangnya"],a:0,tip:"Hargai kebaikan orang lain dengan ucapan terima kasih."}
+    ,{q:"Kamu ingin bertanya ketika guru menjelaskan.",o:["Mengangkat tangan dan menunggu dipersilakan","Berteriak terus","Mengganggu teman"],a:0,tip:"Menunggu giliran membantu semua orang mendengar."}
+    ,{q:"Teman mengajak bermain, tetapi kamu ingin istirahat.",o:["Menolak dengan sopan dan menjelaskan bahwa kamu ingin istirahat","Mendorongnya","Berbohong sambil mengejek"],a:0,tip:"Kamu boleh menyampaikan kebutuhanmu dengan sopan."}
+    ,{q:"Kamu menumpahkan air di meja bersama.",o:["Memberi tahu dan membantu membersihkannya","Membiarkannya begitu saja","Menyalahkan teman"],a:0,tip:"Bertanggung jawab berarti ikut memperbaiki keadaan."}
+    ,{q:"Teman baru belum mengenal siapa pun di kelas.",o:["Menyapa dan mengenalkan diri","Menertawakannya","Menyuruhnya pergi"],a:0,tip:"Sambutan ramah dapat membantu teman baru merasa diterima."}
+    ,{q:"Kamu tidak sengaja memotong antrean.",o:["Meminta maaf lalu kembali ke urutan yang benar","Tetap berdiri di depan","Menyuruh semua diam"],a:0,tip:"Antre dengan tertib adalah bentuk menghargai orang lain."}
+    ,{q:"Teman memuji hasil gambarmu.",o:["Mengucapkan terima kasih","Mengatakan gambar teman buruk","Mengabaikannya sambil mengejek"],a:0,tip:"Kita bisa menerima pujian dengan sederhana dan ramah."}
+    ,{q:"Kamu ingin memakai alat kelas yang sedang dipakai teman.",o:["Bertanya kapan alat itu bisa dipakai setelahnya","Mengambilnya diam-diam","Menyembunyikan alat lain"],a:0,tip:"Bertanya dan menunggu giliran membuat penggunaan barang lebih adil."}
+    ,{q:"Kamu tidak mendengar teman berbicara.",o:["Meminta teman mengulanginya dengan sopan","Berpura-pura lalu menyalahkannya","Menertawakannya"],a:0,tip:"Meminta pengulangan adalah cara yang baik saat belum mendengar jelas."}
+  ],
+  2: [
+    {q:"Dua teman ingin menggunakan ayunan yang sama. Apa yang adil?",o:["Satu orang memakai selamanya","Membuat giliran dan menunggu","Mendorong teman lain"],a:1,tip:"Bergiliran membuat setiap orang mendapat kesempatan."},
+    {q:"Teman mengajakmu melakukan sesuatu yang membuatmu tidak nyaman.",o:["Ikut karena takut ditolak","Bilang tidak dengan sopan dan cari orang dewasa tepercaya jika perlu","Menyimpan rasa takut sendirian"],a:1,tip:"Kamu boleh berkata tidak pada hal yang membuatmu tidak nyaman."},
+    {q:"Kamu tidak sengaja merusak hasil karya teman.",o:["Menyembunyikannya","Jujur, meminta maaf, lalu menawarkan bantuan memperbaiki","Menyalahkan orang lain"],a:1,tip:"Jujur membantu kita menyelesaikan masalah bersama."},
+    {q:"Teman berbicara dengan nada kesal. Apa yang bisa kamu lakukan?",o:["Membalas dengan teriakan","Tetap tenang dan bertanya apa yang terjadi","Langsung mengejeknya"],a:1,tip:"Berbicara tenang dapat membantu memahami masalah."},
+    {q:"Kamu ingin bergabung dengan kelompok yang sedang bermain.",o:["Bertanya apakah boleh ikut","Langsung mengambil semua alat","Mengganggu permainan"],a:0,tip:"Meminta izin adalah cara yang baik untuk bergabung."},
+    {q:"Teman memiliki pendapat berbeda saat kerja kelompok.",o:["Mendengarkan pendapatnya dan membicarakan pilihan bersama","Memaksa semua mengikuti pendapatmu","Meninggalkan kelompok tanpa bicara"],a:0,tip:"Setiap orang boleh memiliki pendapat berbeda."},
+    {q:"Kamu merasa mulai kesal saat permainan tidak berjalan sesuai keinginan.",o:["Berhenti sejenak, tarik napas, lalu bicara baik-baik","Merusak permainan","Menyalahkan semua teman"],a:0,tip:"Jeda sebentar dapat membantu kita lebih tenang."},
+    {q:"Teman tidak sengaja membuat kesalahan saat tugas kelompok.",o:["Mengejeknya","Membantu mencari cara memperbaiki","Mengeluarkannya dari kelompok"],a:1,tip:"Bekerja sama berarti saling membantu, bukan mempermalukan."},
+    {q:"Seseorang mengambil barangmu tanpa izin.",o:["Jelaskan dengan tenang bahwa barang itu milikmu dan minta dikembalikan","Membalas mengambil barangnya","Langsung berkelahi"],a:0,tip:"Sampaikan batasan dengan jelas. Minta bantuan orang dewasa jika masalah berlanjut."},
+    {q:"Kamu melihat teman duduk sendirian saat istirahat.",o:["Mengajaknya bergabung jika ia mau","Memaksanya ikut","Menertawakannya"],a:0,tip:"Mengajak dengan ramah itu baik, tetapi teman juga boleh memilih."}
+    ,{q:"Dalam kerja kelompok, satu anggota belum mendapat tugas.",o:["Membicarakan pembagian tugas agar semua ikut berperan","Membiarkannya tanpa penjelasan","Mengerjakan semuanya sambil menyalahkan"],a:0,tip:"Peran yang jelas membantu setiap anggota berpartisipasi."}
+    ,{q:"Teman berkata bahwa ia tidak suka dipanggil dengan nama julukan tertentu.",o:["Berhenti memakai julukan itu dan gunakan nama yang ia sukai","Terus mengulanginya sebagai lelucon","Mengajak teman lain ikut memanggilnya"],a:0,tip:"Hormati nama dan hal yang membuat orang lain nyaman."}
+    ,{q:"Kamu melihat dua teman mulai berdebat.",o:["Tidak memihak atau memprovokasi; ajak bicara tenang atau panggil guru","Merekam untuk ditertawakan","Mendorong mereka agar terus bertengkar"],a:0,tip:"Jangan memperkeruh konflik. Minta bantuan orang dewasa jika diperlukan."}
+    ,{q:"Saat bermain, kamu kalah dan merasa kecewa.",o:["Mengakui hasil permainan dan mencoba lagi nanti","Melempar alat permainan","Menuduh teman curang tanpa alasan"],a:0,tip:"Kecewa itu wajar; kita dapat menenangkan diri dan tetap menghargai teman."}
+    ,{q:"Teman menawarkan makanan, tetapi kamu tidak ingin memakannya.",o:["Menolak dengan sopan","Merebut makanannya","Mengejek makanan itu"],a:0,tip:"Kita boleh menolak tawaran dengan tetap menghargai orang lain."}
+    ,{q:"Kamu ingin menyampaikan pendapat yang berbeda.",o:["Menjelaskan pendapat dengan tenang dan mendengarkan tanggapan","Mengatakan pendapat teman bodoh","Berbicara lebih keras agar menang"],a:0,tip:"Perbedaan pendapat dapat dibahas tanpa merendahkan orang lain."}
+    ,{q:"Teman meminjam penghapus dan lupa mengembalikannya.",o:["Mengingatkannya dengan sopan","Mengambil barangnya sebagai balasan","Memarahinya di depan kelas"],a:0,tip:"Menyampaikan kebutuhan dengan jelas dapat mencegah salah paham."}
+    ,{q:"Kamu melihat seseorang tidak diajak dalam kegiatan kelompok.",o:["Menanyakan apakah ia ingin ikut dan membantu kelompok bersikap terbuka","Ikut mengucilkannya","Memaksanya ikut tanpa bertanya"],a:0,tip:"Ajak dengan ramah dan hormati pilihan orang tersebut."}
+    ,{q:"Teman berbagi cerita dan kamu ingin menceritakannya kepada orang lain.",o:["Meminta izin sebelum membagikannya, kecuali ada masalah keselamatan","Menyebarkannya ke grup kelas","Membuat cerita itu jadi bahan lelucon"],a:0,tip:"Jaga privasi teman; jika menyangkut keselamatan, cari bantuan orang dewasa tepercaya."}
+    ,{q:"Kamu terlambat datang ke kegiatan bersama.",o:["Meminta maaf, menjelaskan singkat, lalu ikut tanpa mengganggu","Menyalahkan semua orang","Memotong pembicaraan dan menuntut perhatian"],a:0,tip:"Akui keterlambatan dan bergabung dengan cara yang menghargai kelompok."}
+  ],
+  3: [
+    {q:"Di grup kelas, seseorang mengirim pesan yang mengejek temanmu. Apa tindakan yang tepat?",o:["Ikut menyebarkan pesan","Tidak ikut mengejek, dukung teman, dan laporkan kepada guru/orang dewasa tepercaya","Membalas dengan ejekan yang lebih kasar"],a:1,tip:"Jangan menyebarkan perundungan. Simpan bukti bila aman dan minta bantuan orang dewasa."},
+    {q:"Kamu berbeda pendapat dengan teman saat tugas kelompok dan waktu hampir habis.",o:["Bergantian menyampaikan ide lalu memilih solusi yang disepakati","Memaksa teman mengikuti idemu","Tidak mengerjakan tugas"],a:0,tip:"Dengarkan, jelaskan alasan, lalu cari kesepakatan."},
+    {q:"Teman bercerita tentang masalah pribadi dan meminta kamu merahasiakannya, tetapi ia tampak tidak aman.",o:["Berjanji merahasiakan apa pun","Mencari bantuan orang dewasa tepercaya demi keselamatannya","Menyebarkan ceritanya ke teman lain"],a:1,tip:"Rahasia tentang keselamatan tidak harus disimpan sendiri. Cari orang dewasa yang dapat membantu."},
+    {q:"Kamu ingin meminjam barang teman, tetapi ia mengatakan tidak.",o:["Menghormati jawabannya dan mencari pilihan lain","Mengambil diam-diam","Terus memaksa sampai ia menyerah"],a:0,tip:"Kita perlu menghormati jawaban dan batasan orang lain."},
+    {q:"Saat presentasi, temanmu lupa bagian tugasnya.",o:["Mengejeknya di depan kelas","Membantu dengan petunjuk yang disepakati, lalu lanjut bersama","Meninggalkannya"],a:1,tip:"Dukungan yang tenang membantu kelompok menyelesaikan tugas."},
+    {q:"Kamu menerima pesan dari orang yang tidak dikenal yang meminta alamat rumah.",o:["Memberikan alamat","Tidak membagikan informasi pribadi dan memberi tahu orang dewasa tepercaya","Mengirim foto kartu identitas"],a:1,tip:"Jaga informasi pribadi dan bicarakan pesan mencurigakan dengan orang dewasa tepercaya."},
+    {q:"Temanmu tampak kewalahan karena suara di ruangan sangat ramai.",o:["Mengejeknya","Bertanya apakah ia ingin pindah ke tempat lebih tenang atau meminta bantuan guru","Menambah suara agar lucu"],a:1,tip:"Tanyakan apa yang dibutuhkan teman dan hormati jawabannya."},
+    {q:"Kamu sadar ucapanmu membuat teman tersinggung.",o:["Mengatakan ia terlalu sensitif","Mendengarkan, meminta maaf, dan mencoba memperbaiki ucapan","Mengajak teman lain mengejeknya"],a:1,tip:"Dengarkan dampak ucapanmu dan perbaiki jika perlu."},
+    {q:"Kelompokmu belum sepakat membagi tugas.",o:["Membagi tugas sesuai kesepakatan dan kemampuan setiap anggota","Memberi semua tugas kepada satu teman","Tidak memberi tahu siapa pun"],a:0,tip:"Pembagian tugas yang jelas dan adil membantu kelompok bekerja sama."},
+    {q:"Kamu merasa bingung ketika harus ikut kegiatan baru.",o:["Meminta penjelasan langkah demi langkah dari pendamping/guru","Pura-pura paham lalu pergi","Menyalahkan teman"],a:0,tip:"Meminta instruksi yang jelas adalah strategi yang baik."}
+    ,{q:"Seorang teman meminta kamu mengirim kata sandi akun permainanmu.",o:["Tidak membagikan kata sandi dan menjelaskan bahwa itu rahasia","Mengirimkannya agar dianggap teman baik","Menuliskannya di grup kelas"],a:0,tip:"Kata sandi adalah informasi pribadi. Jangan membagikannya kepada orang lain."}
+    ,{q:"Kamu menerima foto teman yang memalukan dan diminta menyebarkannya.",o:["Tidak menyebarkan foto dan memberi tahu orang dewasa tepercaya bila teman dirugikan","Meneruskan ke banyak grup","Menambahkan komentar mengejek"],a:0,tip:"Jaga privasi orang lain dan jangan ikut menyebarkan perundungan."}
+    ,{q:"Teman berkata kamu membuatnya tidak nyaman dengan candaanmu.",o:["Mendengarkan, berhenti bercanda seperti itu, dan meminta maaf","Bilang ia tidak bisa bercanda","Mengulanginya supaya teman lain tertawa"],a:0,tip:"Dampak candaan penting. Berhenti dan memperbaiki sikap menunjukkan kepedulian."}
+    ,{q:"Kamu melihat teman kesulitan memahami aturan permainan.",o:["Menjelaskan aturan dengan sederhana dan bertanya apakah ia ingin mencoba","Menyuruhnya pergi","Mempercepat permainan agar ia makin bingung"],a:0,tip:"Jelaskan dengan sabar dan beri kesempatan untuk bertanya."}
+    ,{q:"Seseorang yang tidak kamu kenal menawarkan tumpangan tanpa sepengetahuan keluargamu.",o:["Menolak dan segera mencari orang dewasa tepercaya","Ikut tanpa memberi tahu siapa pun","Memberi alamat rumah"],a:0,tip:"Utamakan keselamatan dan pastikan orang dewasa tepercaya mengetahui situasinya."}
+    ,{q:"Saat diskusi, satu teman terus berbicara dan yang lain belum mendapat kesempatan.",o:["Mengusulkan giliran bicara agar semua dapat menyampaikan ide","Menyuruhnya diam dengan kasar","Meninggalkan diskusi"],a:0,tip:"Aturan giliran membantu diskusi menjadi lebih adil."}
+    ,{q:"Kamu tidak sengaja menyebarkan informasi yang ternyata salah.",o:["Mengoreksi informasi dan memberi tahu orang yang menerima pesan","Membiarkannya karena malu","Menyalahkan orang yang bertanya"],a:0,tip:"Bertanggung jawab berarti memperbaiki informasi yang keliru."}
+    ,{q:"Teman meminta kamu ikut mengejek seseorang agar diterima kelompok.",o:["Menolak ikut mengejek dan memilih bersikap baik","Ikut mengejek supaya disukai","Merekam ejekan itu"],a:0,tip:"Kamu tidak harus menyakiti orang lain untuk diterima teman."}
+    ,{q:"Kamu membutuhkan waktu lebih lama untuk menyelesaikan tugas kelompok.",o:["Memberi tahu kelompok dan meminta bantuan atau pembagian ulang yang adil","Diam sampai tugas gagal","Menyalahkan anggota lain"],a:0,tip:"Komunikasi jujur membantu kelompok menyesuaikan rencana bersama."}
+    ,{q:"Teman mengatakan sesuatu yang membuatmu tidak nyaman dan tetap melakukannya setelah diminta berhenti.",o:["Menjauh dan meminta bantuan guru atau orang dewasa tepercaya","Menyimpan masalah sendirian","Membalas dengan melakukan hal yang sama"],a:0,tip:"Batasanmu penting. Jika seseorang tidak menghormatinya, mintalah bantuan."}
+  ]
+};
+let usedSocialQuestions = {1:[],2:[],3:[]};
+
+function renderSocialQuestion(area){
+  const bank = socialBank[selectedLevel] || socialBank[1];
+  if(usedSocialQuestions[selectedLevel].length >= bank.length) usedSocialQuestions[selectedLevel]=[];
+  const available=bank.map((q,i)=>({q,i})).filter(x=>!usedSocialQuestions[selectedLevel].includes(x.i));
+  const picked=available[Math.floor(Math.random()*available.length)];
+  usedSocialQuestions[selectedLevel].push(picked.i);
+  socialQuestion=picked.q;
+  setQuestion(getText("Situasi sosial: pilih tindakan yang paling tepat.","Social situation: choose the best response."));
+  area.innerHTML="";
+  const prompt=document.createElement("div");
+  prompt.className="social-prompt";
+  prompt.innerHTML=`<div style="font-size:42px;margin-bottom:8px">${selectedLevel===1?"🌱":selectedLevel===2?"🌿":"🌳"}</div><h3>${socialQuestion.q}</h3>`;
+  area.appendChild(prompt);
+  const options=document.createElement("div");
+  options.className="social-options";
+  const shuffled=socialQuestion.o.map((text,i)=>({text,correct:i===socialQuestion.a})).sort(()=>Math.random()-.5);
+  shuffled.forEach(option=>{
+    const btn=document.createElement("button");
+    btn.className="social-option";
+    btn.textContent=option.text;
+    btn.onclick=()=>{
+      if(btn.dataset.done) return;
+      btn.dataset.done="1";
+      options.querySelectorAll("button").forEach(b=>b.disabled=true);
+      if(option.correct){
+        btn.classList.add("correct");
+        addScore(10);
+        showFeedback(getText("Benar! Pilihanmu baik. 🎉","Correct! That is a thoughtful choice. 🎉"),true);
+      }else{
+        btn.classList.add("wrong");
+        const correctText=socialQuestion.o[socialQuestion.a];
+        showFeedback(getText("Belum tepat. Jawaban yang lebih baik: ","Not quite. A better response is: ")+correctText,false);
+      }
+      const tip=document.createElement("div");
+      tip.className="social-tip";
+      tip.innerHTML=`💡 <strong>${getText("Ingat:","Remember:")}</strong> ${socialQuestion.tip}`;
+      area.appendChild(tip);
+      const next=document.createElement("button");
+      next.className="main-btn";
+      next.style.marginTop="15px";
+      next.textContent=getText("Soal Berikutnya ➜","Next Question ➜");
+      next.onclick=()=>nextQuestion();
+      area.appendChild(next);
+    };
+    options.appendChild(btn);
+  });
+  area.appendChild(options);
+}
+
+
+function setQuestion(text){
+
+    currentQuestionText = text;
+
+    document.getElementById("questionText").textContent = text;
+
+}
+
+/* =====================================================
+
+   🔊 SUARA NAMA GAMBAR
+
+===================================================== */
+
+function speakImageName(name){
+
+    if(!("speechSynthesis" in window)) return;
+
+    speechSynthesis.cancel();
+
+    const voice = new SpeechSynthesisUtterance(name);
+
+    voice.lang = lang === "id" ? "id-ID" : "en-US";
+
+    voice.rate = .8;
+
+    voice.pitch = 1.05;
+
+    voice.volume = 1;
+
+    speechSynthesis.speak(voice);
+
+}
+
+/* =====================================================
+
+   LUMI - MENJODOHKAN
+
+===================================================== */
+
+function renderMathQuestion(area){
+    const level=Number(selectedLevel)||1;
+    const r=(min,max)=>Math.floor(Math.random()*(max-min+1))+min;
+    let q="",answer=0,tip="";
+    const type=r(1,level===1?4:level===2?6:8);
+    if(type===1){let a=r(1,5),b=r(1,5);q=`Ada ${a} apel 🍎 lalu ditambah ${b} apel. Berapa semuanya?`;answer=a+b;tip=`${a} + ${b} = ${answer}.`}
+    else if(type===2){let a=r(1,10),b=r(1,Math.min(5,a));q=`Kamu punya ${a} balon 🎈. ${b} balon diberikan kepada teman. Berapa yang tersisa?`;answer=a-b;tip=`${a} − ${b} = ${answer}.`}
+    else if(type===3){let a=r(1,10);q=`Angka berapakah yang muncul setelah ${a}?`;answer=a+1;tip=`Setelah ${a} adalah ${answer}.`}
+    else if(type===4){let a=r(1,10);q=`Angka berapakah yang muncul sebelum ${a}?`;answer=a-1;tip=`Sebelum ${a} adalah ${answer}.`}
+    else if(type===5){let a=r(2,15),b=r(1,10);q=`Berapa hasil ${a} + ${b}?`;answer=a+b;tip=`${a} + ${b} = ${answer}.`}
+    else if(type===6){let a=r(5,20),b=r(1,Math.min(10,a));q=`Berapa hasil ${a} − ${b}?`;answer=a-b;tip=`${a} − ${b} = ${answer}.`}
+    else if(type===7){let a=r(3,9),b=r(2,9);q=`Berapa hasil ${a} × ${b}?`;answer=a*b;tip=`${a} × ${b} = ${answer}.`}
+    else {let a=r(2,5),b=r(2,5),total=a*b;q=`Ada ${total} permen 🍬 dibagi sama rata kepada ${a} anak. Setiap anak mendapat berapa?`;answer=b;tip=`${total} ÷ ${a} = ${answer}.`}
+    if(level>=2 && type<=2 && Math.random()<.45){let a=r(10,30),b=r(1,12);if(type===1){q=`Berapa hasil ${a} + ${b}?`;answer=a+b;tip=`${a} + ${b} = ${answer}.`}else{b=Math.min(a,b);q=`Berapa hasil ${a} − ${b}?`;answer=a-b;tip=`${a} − ${b} = ${answer}.`}}
+    setQuestion(q);
+    const prompt=document.createElement("div");prompt.style.cssText="text-align:center;font-size:24px;font-weight:700;line-height:1.5;margin:12px 0 22px";
+    prompt.innerHTML=`<div style="font-size:42px;margin-bottom:10px">${level===1?"🔢":level===2?"➕➖":"✖️➗"}</div>${q}`;area.appendChild(prompt);
+    const values=new Set([answer]);const spread=level===1?4:level===2?8:12;
+    while(values.size<4){const wrong=answer+r(-spread,spread);if(wrong>=0&&wrong!==answer)values.add(wrong)}
+    const grid=document.createElement("div");grid.className="choice-grid";
+    shuffle([...values]).forEach(value=>{const btn=document.createElement("button");btn.className="choice";btn.innerHTML=`<div style="font-size:32px">${value}</div>`;
+      btn.onclick=()=>{if(btn.dataset.done)return;grid.querySelectorAll("button").forEach(b=>b.dataset.done="1");
+        if(value===answer){btn.classList.add("correct");addScore(10);showFeedback(getText("Benar! Hebat! 🎉","Correct! Great! 🎉"),true)}
+        else{btn.classList.add("wrong");showFeedback(getText(`Belum tepat. Jawabannya ${answer}.`,`Not quite. The answer is ${answer}.`),false);grid.querySelectorAll("button").forEach(b=>{if(Number(b.textContent.trim())===answer)b.classList.add("correct")})}
+        const hint=document.createElement("p");hint.style.cssText="text-align:center;line-height:1.5;margin:12px 0";hint.textContent="💡 "+tip;area.appendChild(hint);
+        const next=document.createElement("button");next.className="main-btn";next.style.marginTop="12px";next.textContent=getText("Soal Berikutnya ➜","Next Question ➜");next.onclick=()=>nextQuestion();area.appendChild(next)};
+      grid.appendChild(btn)});area.appendChild(grid);
+}
+
+function renderMatch(area){
+
+    let count = 3;
+
+    if(selectedLevel === 2) count = 4;
+
+    if(selectedLevel === 3) count = 5;
+
+    const selected = shuffle(getWords()).slice(0,count);
+
+    setQuestion(
+
+        getText(
+
+            "Jodohkan nama di kiri dengan gambar yang tepat di kanan!",
+
+            "Match the names on the left with the correct pictures on the right!"
+
+        )
+
+    );
+
+    let selectedName = null;
+
+    let matched = 0;
+
+    area.innerHTML = `
+
+        <div class="match-wrapper">
+
+            <div class="match-column">
+
+                <h3>📝 ${getText("Nama","Names")}</h3>
+
+                <div id="nameColumn"></div>
+
+            </div>
+
+            <div class="match-column">
+
+                <h3>🖼️ ${getText("Gambar","Pictures")}</h3>
+
+                <div id="pictureColumn"></div>
+
+            </div>
+
+        </div>
+
+    `;
+
+    const nameColumn = document.getElementById("nameColumn");
+
+    const pictureColumn = document.getElementById("pictureColumn");
+
+    shuffle(selected).forEach(item=>{
+
+        const btn = document.createElement("button");
+
+        btn.className = "match-name";
+
+        btn.textContent = item.name;
+
+        btn.dataset.id = item.name;
+
+        btn.onclick = ()=>{
+
+            if(btn.classList.contains("matched")) return;
+
+            selectedName = item;
+
+            document.querySelectorAll(".match-name").forEach(x=>{
+
+                x.classList.remove("selected");
+
+            });
+
+            btn.classList.add("selected");
+
+            /* 🔊 SUARA NAMA SAAT NAMA DIPILIH */
+
+            speakImageName(item.name);
+
+        };
+
+        nameColumn.appendChild(btn);
+
+    });
+
+    shuffle(selected).forEach(item=>{
+
+        const btn = document.createElement("button");
+
+        btn.className = "match-picture";
+
+        btn.textContent = item.emoji;
+
+        btn.dataset.id = item.name;
+
+        btn.onclick = ()=>{
+
+            /* 🔊 SUARA NAMA GAMBAR SAAT GAMBAR DIKLIK */
+
+            speakImageName(item.name);
+
+            if(!selectedName) return;
+
+            if(btn.classList.contains("matched")) return;
+
+            if(btn.dataset.id === selectedName.name){
+
+                btn.classList.add("matched");
+
+                document.querySelectorAll(".match-name").forEach(nameBtn=>{
+
+                    if(nameBtn.dataset.id === selectedName.name){
+
+                        nameBtn.classList.remove("selected");
+
+                        nameBtn.classList.add("matched");
+
+                    }
+
+                });
+
+                matched++;
+
+                selectedName = null;
+
+                showFeedback(
+
+                    getText(
+
+                        "Benar! 🎉",
+
+                        "Correct! 🎉"
+
+                    ),
+
+                    true
+
+                );
+
+                if(matched === selected.length){
+
+                    addScore(10);
+
+                    setTimeout(nextQuestion,800);
+
+                }
+
+            }else{
+
+                btn.classList.add("wrong");
+
+                loseLife();
+
+                showFeedback(
+
+                    getText(
+
+                        "Salah, coba lagi",
+
+                        "Wrong, try again"
+
+                    ),
+
+                    false
+
+                );
+
+                setTimeout(()=>{
+
+                    btn.classList.remove("wrong");
+
+                },400);
+
+            }
+
+        };
+
+        pictureColumn.appendChild(btn);
+
+    });
+
+}
+
+/* =====================================================
+
+   NARA - PILIH GAMBAR
+
+===================================================== */
+
+function renderChoice(area){
+
+    const pool = getWords();
+
+    const answer =
+
+        pool[Math.floor(Math.random()*pool.length)];
+
+    const choices = shuffle([
+
+        answer,
+
+        ...shuffle(
+
+            pool.filter(x=>x.name !== answer.name)
+
+        ).slice(0,3)
+
+    ]);
+
+    setQuestion(
+
+        getText(
+
+            `Gambar manakah yang bernama "${answer.name}"?`,
+
+            `Which picture is "${answer.name}"?`
+
+        )
+
+    );
+
+    const grid = document.createElement("div");
+
+    grid.className = "choice-grid";
+
+    choices.forEach(item=>{
+
+        const btn = document.createElement("button");
+
+        btn.className = "choice";
+
+        btn.innerHTML = `
+
+            <div style="font-size:48px">${item.emoji}</div>
+
+            <div>${item.name}</div>
+
+        `;
+
+        btn.onclick = ()=>{
+
+            if(btn.dataset.done) return;
+
+            /* 🔊 SEBUT NAMA GAMBAR */
+
+            speakImageName(item.name);
+
+            btn.dataset.done = "1";
+
+            if(item.name === answer.name){
+
+                btn.classList.add("correct");
+
+                addScore(10);
+
+                showFeedback(
+
+                    getText(
+
+                        "Benar! Hebat! 🎉",
+
+                        "Correct! Great! 🎉"
+
+                    ),
+
+                    true
+
+                );
+
+                setTimeout(nextQuestion,800);
+
+            }else{
+
+                btn.classList.add("wrong");
+
+                loseLife();
+
+                showFeedback(
+
+                    getText(
+
+                        "Salah, coba lagi",
+
+                        "Wrong, try again"
+
+                    ),
+
+                    false
+
+                );
+
+                setTimeout(()=>{
+
+                    btn.classList.remove("wrong");
+
+                    btn.dataset.done = "";
+
+                },400);
+
+            }
+
+        };
+
+        grid.appendChild(btn);
+
+    });
+
+    area.appendChild(grid);
+
+}
+
+/* =====================================================
+
+   BIMO - ANGKA
+
+===================================================== */
+
+function renderNumberGame(area){
+
+    let pattern;
+
+    let answer;
+
+    if(selectedLevel === 1){
+
+        const start =
+
+            Math.floor(Math.random()*5)+1;
+
+        pattern = [
+
+            start,
+
+            start+1,
+
+            null,
+
+            start+3,
+
+            start+4
+
+        ];
+
+        answer = start+2;
+
+    }else if(selectedLevel === 2){
+
+        const start =
+
+            Math.floor(Math.random()*5)+5;
+
+        pattern = [
+
+            start,
+
+            start+2,
+
+            null,
+
+            start+6,
+
+            start+8
+
+        ];
+
+        answer = start+4;
+
+    }else{
+
+        const start =
+
+            Math.floor(Math.random()*10)+10;
+
+        pattern = [
+
+            start,
+
+            start-2,
+
+            null,
+
+            start-6,
+
+            start-8
+
+        ];
+
+        answer = start-4;
+
+    }
+
+    setQuestion(
+
+        getText(
+
+            "Angka berapa yang hilang?",
+
+            "Which number is missing?"
+
+        )
+
+    );
+
+    const seq = document.createElement("div");
+
+    seq.className = "sequence";
+
+    pattern.forEach(num=>{
+
+        const item = document.createElement("div");
+
+        item.className = "number";
+
+        if(num === null){
+
+            item.classList.add("missing");
+
+            item.textContent = "?";
+
+        }else{
+
+            item.textContent = num;
+
+        }
+
+        seq.appendChild(item);
+
+    });
+
+    area.appendChild(seq);
+
+    const choices = shuffle([
+
+        answer,
+
+        answer+1,
+
+        answer+2,
+
+        answer-1
+
+    ]);
+
+    const choiceBox = document.createElement("div");
+
+    choiceBox.style.textAlign = "center";
+
+    choices.forEach(num=>{
+
+        const btn = document.createElement("button");
+
+        btn.className = "number-choice";
+
+        btn.textContent = num;
+
+        btn.onclick = ()=>{
+
+            if(btn.dataset.done) return;
+
+            /* 🔊 SEBUT ANGKA YANG DIPILIH */
+
+            speakImageName(String(num));
+
+            if(num === answer){
+
+                btn.style.background = "#b7f2c1";
+
+                btn.dataset.done = "1";
+
+                addScore(10);
+
+                showFeedback(
+
+                    getText(
+
+                        "Benar! 🎉",
+
+                        "Correct! 🎉"
+
+                    ),
+
+                    true
+
+                );
+
+                setTimeout(nextQuestion,800);
+
+            }else{
+
+                btn.style.background = "#ffc2ca";
+
+                loseLife();
+
+                showFeedback(
+
+                    getText(
+
+                        "Salah, coba lagi",
+
+                        "Wrong, try again"
+
+                    ),
+
+                    false
+
+                );
+
+                setTimeout(()=>{
+
+                    btn.style.background = "";
+
+                },400);
+
+            }
+
+        };
+
+        choiceBox.appendChild(btn);
+
+    });
+
+    area.appendChild(choiceBox);
+
+}
+
+/* =====================================================
+
+   SKY
+
+===================================================== */
+
+function renderSky(area){
+
+    const pool = getWords();
+
+    const answer =
+
+        pool[Math.floor(Math.random()*pool.length)];
+
+    const choices = shuffle([
+
+        answer,
+
+        ...shuffle(
+
+            pool.filter(x=>x.name !== answer.name)
+
+        ).slice(0,3)
+
+    ]);
+
+    setQuestion(
+
+        getText(
+
+            `Apa nama gambar ${answer.emoji}?`,
+
+            `What is the name of ${answer.emoji}?`
+
+        )
+
+    );
+
+    const grid = document.createElement("div");
+
+    grid.className = "choice-grid";
+
+    choices.forEach(item=>{
+
+        const btn = document.createElement("button");
+
+        btn.className = "choice";
+
+        btn.textContent = item.name;
+
+        btn.onclick = ()=>{
+
+            /* 🔊 SEBUT NAMA YANG DIPILIH */
+
+            speakImageName(item.name);
+
+            if(btn.dataset.done) return;
+
+            if(item.name === answer.name){
+
+                btn.classList.add("correct");
+
+                btn.dataset.done = "1";
+
+                addScore(10);
+
+                showFeedback(
+
+                    getText(
+
+                        "Benar! 🎉",
+
+                        "Correct! 🎉"
+
+                    ),
+
+                    true
+
+                );
+
+                setTimeout(nextQuestion,800);
+
+            }else{
+
+                btn.classList.add("wrong");
+
+                loseLife();
+
+                showFeedback(
+
+                    getText(
+
+                        "Salah, coba lagi",
+
+                        "Wrong, try again"
+
+                    ),
+
+                    false
+
+                );
+
+                setTimeout(()=>{
+
+                    btn.classList.remove("wrong");
+
+                },400);
+
+            }
+
+        };
+
+        grid.appendChild(btn);
+
+    });
+
+    area.appendChild(grid);
+
+}
+
+/* =====================================================
+
+   LUNA - MEMORY 5 PASANG
+
+===================================================== */
+
+function renderMemory(area){
+
+    const selected =
+
+        shuffle(getWords()).slice(0,5);
+
+    setQuestion(
+
+        getText(
+
+            "Temukan 5 pasangan gambar yang sama!",
+
+            "Find the 5 matching pairs!"
+
+        )
+
+    );
+
+    const cards = shuffle(
+
+        selected.flatMap(item=>[
+
+            {...item},
+
+            {...item}
+
+        ])
+
+    );
+
+    area.innerHTML = `
+
+        <div class="memory-grid" id="memoryGrid"></div>
+
+    `;
+
+    const grid =
+
+        document.getElementById("memoryGrid");
+
+    let firstCard = null;
+
+    let locked = false;
+
+    let matchedPairs = 0;
+
+    cards.forEach(item=>{
+
+        const card = document.createElement("button");
+
+        card.className = "memory-card";
+
+        card.innerHTML = `
+
+            <span class="question-mark">?</span>
+
+            <span class="memory-content">${item.emoji}</span>
+
+        `;
+
+        card.dataset.name = item.name;
+
+        card.onclick = ()=>{
+
+            if(
+
+                locked ||
+
+                card.classList.contains("open") ||
+
+                card.classList.contains("matched")
+
+            ){
+
+                return;
+
+            }
+
+            /* 🔊 SEBUT NAMA GAMBAR */
+
+            speakImageName(item.name);
+
+            card.classList.add("open");
+
+            if(!firstCard){
+
+                firstCard = card;
+
+                return;
+
+            }
+
+            if(firstCard.dataset.name === card.dataset.name){
+
+                firstCard.classList.remove("open");
+
+                firstCard.classList.add("matched");
+
+                card.classList.add("matched");
+
+                /*
+
+                    GAMBAR TETAP TERLIHAT
+
+                    DAN TIDAK KEMBALI MENJADI ?
+
+                */
+
+                firstCard
+
+                    .querySelector(".memory-content")
+
+                    .style.display = "block";
+
+                card
+
+                    .querySelector(".memory-content")
+
+                    .style.display = "block";
+
+                matchedPairs++;
+
+                firstCard = null;
+
+                showFeedback(
+
+                    getText(
+
+                        "Pasangan ditemukan! 🎉",
+
+                        "Match found! 🎉"
+
+                    ),
+
+                    true
+
+                );
+
+                if(matchedPairs === 5){
+
+                    addScore(10);
+
+                    setTimeout(nextQuestion,900);
+
+                }
+
+            }else{
+
+                locked = true;
+
+                loseLife();
+
+                showFeedback(
+
+                    getText(
+
+                        "Belum cocok, coba lagi",
+
+                        "Not a match, try again"
+
+                    ),
+
+                    false
+
+                );
+
+                setTimeout(()=>{
+
+                    firstCard.classList.remove("open");
+
+                    card.classList.remove("open");
+
+                    firstCard = null;
+
+                    locked = false;
+
+                },800);
+
+            }
+
+        };
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+/* =====================================================
+
+   SCORE
+
+===================================================== */
+
+function addScore(points){
+
+    score += points;
+
+    document.getElementById("score").textContent = score;
+
+    const scoreBox =
+
+        document.querySelector(".score");
+
+    scoreBox.animate(
+
+        [
+
+            {transform:"scale(1)"},
+
+            {transform:"scale(1.15)"},
+
+            {transform:"scale(1)"}
+
+        ],
+
+        {
+
+            duration:400
+
+        }
+
+    );
+
+}
+
+/* =====================================================
+
+   LIVES
+
+===================================================== */
+
+function loseLife(){
+
+    if(gameFinished) return;
+
+    lives--;
+
+    if(lives < 0){
+
+        lives = 0;
+
+    }
+
+    document.getElementById("lives").textContent = lives;
+
+    const livesBox =
+
+        document.querySelector(".lives");
+
+    livesBox.animate(
+
+        [
+
+            {transform:"scale(1)"},
+
+            {transform:"scale(1.2)"},
+
+            {transform:"scale(1)"}
+
+        ],
+
+        {
+
+            duration:400
+
+        }
+
+    );
+
+    if(lives <= 0){
+
+        setTimeout(()=>{
+
+            gameOver();
+
+        },500);
+
+    }
+
+}
+
+/* =====================================================
+
+   FEEDBACK
+
+===================================================== */
+
+function showFeedback(text,good){
+
+    const feedback =
+
+        document.getElementById("feedback");
+
+    feedback.textContent =
+
+        good ? "🎉 " + text : "❌ " + text;
+
+    feedback.className =
+
+        "feedback " +
+
+        (good ? "good" : "bad");
+
+}
+
+/* =====================================================
+
+   FINISH GAME
+
+===================================================== */
+
+function finishGame(){
+
+    gameFinished = true;
+    unlockNextLevel();
+
+    stopSpeech();
+
+    stopMusic();
+
+    document.getElementById("finalScore").textContent =
+
+        score;
+
+    document.getElementById("resultEmoji").textContent =
+
+        score >= TARGET_SCORE ? "🏆" : "🎉";
+
+    document.getElementById("resultTitle").textContent =
+
+        score >= TARGET_SCORE
+
+        ? getText(
+
+            "Hebat Sekali!",
+
+            "Amazing!"
+
+        )
+
+        : getText(
+
+            "Permainan Selesai!",
+
+            "Game Complete!"
+
+        );
+
+    document.getElementById("resultMessage").textContent =
+
+        getText(
+
+            selectedLevel < 3 ? "Kamu sudah menyelesaikan level ini! Level berikutnya terbuka." : "Kamu sudah menyelesaikan semua soal!",
+
+            selectedLevel < 3 ? "You completed this level! The next level is unlocked." : "You completed all the questions!"
+
+        );
+
+    showScreen("result");
+
+}
+
+/* =====================================================
+
+   GAME OVER
+
+===================================================== */
+
+function gameOver(){
+
+    gameFinished = true;
+
+    stopSpeech();
+
+    stopMusic();
+
+    document.getElementById("finalScore").textContent =
+
+        score;
+
+    document.getElementById("resultEmoji").textContent =
+
+        "💪";
+
+    document.getElementById("resultTitle").textContent =
+
+        getText(
+
+            "Coba Lagi!",
+
+            "Try Again!"
+
+        );
+
+    document.getElementById("resultMessage").textContent =
+
+        getText(
+
+            "Nyawamu sudah habis. Jangan menyerah!",
+
+            "You ran out of lives. Don't give up!"
+
+        );
+
+    showScreen("result");
+
+}
+
+/* =====================================================
+
+   RETRY
+
+===================================================== */
+
+function retryGame(){
+
+    startGame(selectedLevel);
+
+}
+
+function backToLevels(){
+
+    gameFinished = true;
+
+    stopSpeech();
+
+    stopMusic();
+
+    showScreen("levels");
+
+}
+
+/* =====================================================
+
+   🔊 SUARA PERTANYAAN
+
+===================================================== */
+
+function speakCurrentQuestion(){
+
+    if(!currentQuestionText) return;
+
+    if(!("speechSynthesis" in window)) return;
+
+    speechSynthesis.cancel();
+
+    const utterance =
+
+        new SpeechSynthesisUtterance(
+
+            currentQuestionText
+
+        );
+
+    utterance.lang =
+
+        lang === "id" ? "id-ID" : "en-US";
+
+    utterance.rate = .85;
+
+    utterance.pitch = 1.05;
+
+    utterance.volume = 1;
+
+    speechSynthesis.speak(utterance);
+
+}
+
+function stopSpeech(){
+
+    if("speechSynthesis" in window){
+
+        speechSynthesis.cancel();
+
+    }
+
+}
+
+/* =====================================================
+
+   LANGUAGE
+
+===================================================== */
+
+function changeLanguage(){
+
+    lang =
+
+        document.getElementById("language").value;
+
+    if(currentQuestionText){
+
+        document.getElementById(
+
+            "questionText"
+
+        ).textContent =
+
+            currentQuestionText;
+
+    }
+
+}
+
+/* =====================================================
+
+   ORIENTATION
+
+===================================================== */
+
+async function changeOrientation(){
+
+    const value =
+
+        document.getElementById("orientation").value;
+
+    try{
+
+        if(!screen.orientation) return;
+
+        if(value === "auto"){
+
+            await screen.orientation.unlock();
+
+        }else{
+
+            await screen.orientation.lock(value);
+
+        }
+
+    }catch(error){
+
+        console.log(
+
+            "Orientasi tidak dapat dikunci pada browser ini."
+
+        );
+
+    }
+
+}
+
+/* =====================================================
+
+   MUSIC
+
+===================================================== */
+
+function startMusic(){
+
+    if(musicVolume <= 0) return;
+
+    try{
+
+        if(!audioContext){
+
+            audioContext =
+
+                new (
+
+                    window.AudioContext ||
+
+                    window.webkitAudioContext
+
+                )();
+
+        }
+
+        if(audioContext.state === "suspended"){
+
+            audioContext.resume();
+
+        }
+
+        stopMusic();
+
+        const notes = [
+
+            523.25,
+
+            659.25,
+
+            783.99,
+
+            659.25,
+
+            587.33,
+
+            698.46,
+
+            880,
+
+            698.46
+
+        ];
+
+        let index = 0;
+
+        musicTimer = setInterval(()=>{
+
+            if(
+
+                !audioContext ||
+
+                musicVolume <= 0
+
+            ){
+
+                return;
+
+            }
+
+            const oscillator =
+
+                audioContext.createOscillator();
+
+            const gain =
+
+                audioContext.createGain();
+
+            oscillator.type = "sine";
+
+            oscillator.frequency.value =
+
+                notes[index % notes.length];
+
+            gain.gain.setValueAtTime(
+
+                .0001,
+
+                audioContext.currentTime
+
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+
+                Math.max(
+
+                    .01,
+
+                    musicVolume * .06
+
+                ),
+
+                audioContext.currentTime + .03
+
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+
+                .0001,
+
+                audioContext.currentTime + .25
+
+            );
+
+            oscillator.connect(gain);
+
+            gain.connect(
+
+                audioContext.destination
+
+            );
+
+            oscillator.start();
+
+            oscillator.stop(
+
+                audioContext.currentTime + .27
+
+            );
+
+            index++;
+
+        },320);
+
+    }catch(error){
+
+        console.log(
+
+            "Audio tidak tersedia."
+
+        );
+
+    }
+
+}
+
+function stopMusic(){
+
+    if(musicTimer){
+
+        clearInterval(musicTimer);
+
+        musicTimer = null;
+
+    }
+
+}
+
+/* =====================================================
+
+   INITIAL
+
+===================================================== */
+
+renderCharacterScene("lumi");
+updateLevelLocks();
+
+</script>
+
+</body>
+
+</html>
