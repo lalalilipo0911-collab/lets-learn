@@ -595,6 +595,18 @@ select,input[type="range"]{
     font-weight:bold;
     letter-spacing:2px;
 }
+.writing-clues{
+    display:grid;
+    gap:10px;
+    width:100%;
+}
+.writing-clues div{
+    padding:12px 16px;
+    border-radius:14px;
+    background:#fff4cb;
+    font-size:clamp(18px,4vw,24px);
+    font-weight:bold;
+}
 .writing-input{
     width:100%;
     min-height:58px;
@@ -1271,7 +1283,7 @@ input:focus-visible {
     <div class="mascot">🐿️</div>
     <div class="mascot">🐻</div>
     <div class="mascot">🦅</div>
-    <div class="mascot">🐢</div>
+    <div class="mascot">🐱</div>
     <div class="mascot">🐧</div>
 </div>
 
@@ -1348,7 +1360,7 @@ oninput="musicVolume=this.value/100">
 <button class="social-place" data-topic="home"><span class="place-icon place-illustration" aria-hidden="true"><span class="place-building">🏠</span><span class="place-friend">🐰</span><span class="place-detail">🌷</span></span><span data-i18n="homeTopic">Rumah</span></button>
 <button class="social-place" data-topic="school"><span class="place-icon place-illustration" aria-hidden="true"><span class="place-building">🏫</span><span class="place-friend">🐿️</span><span class="place-detail">📚</span></span><span data-i18n="schoolTopic">Sekolah</span></button>
 <button class="social-place" data-topic="play"><span class="place-icon place-illustration" aria-hidden="true"><span class="place-building">🛝</span><span class="place-friend">🐻</span><span class="place-detail">⚽</span></span><span data-i18n="playTopic">Bermain</span></button>
-<button class="social-place" data-topic="friends"><span class="place-icon place-illustration" aria-hidden="true"><span class="place-building">👫</span><span class="place-friend">🐢</span><span class="place-detail">💛</span></span><span data-i18n="friendTopic">Teman</span></button>
+<button class="social-place" data-topic="friends"><span class="place-icon place-illustration" aria-hidden="true"><span class="place-building">👫</span><span class="place-friend">🐱</span><span class="place-detail">💛</span></span><span data-i18n="friendTopic">Teman</span></button>
 </div>
 <br>
 <button class="main-btn" onclick="startSocialGame()" data-i18n="socialPractice">🎮 Mulai</button>
@@ -1392,7 +1404,7 @@ oninput="musicVolume=this.value/100">
 </button>
 
 <button class="char-card" onclick="selectCharacter('luna')">
-<div class="char-icon">🐢</div>
+<div class="char-icon">🐱</div>
 <h3>Luna</h3>
 <p>🎯 <span data-i18n="carefulConsistent">Teliti & Konsisten</span></p>
 </button>
@@ -1607,7 +1619,7 @@ lumi:"🐰",
 nara:"🐿️",
 bimo:"🐻",
 sky:"🦅",
-luna:"🐢",
+luna:"🐱",
 pippo:"🐧"
 };
 
@@ -2389,12 +2401,47 @@ area.appendChild(box);
    PIPPO WRITING PRACTICE
 ========================= */
 
+const writingRiddles={
+"🍎":{id:["Warnanya merah dan tumbuh di pohon.","Buah ini sering dijadikan jus."],en:["It is red and grows on a tree.","This fruit is often made into juice."]},
+"🍌":{id:["Kulitnya berwarna kuning saat matang.","Bentuknya panjang dan melengkung."],en:["Its peel is yellow when ripe.","It is long and curved."]},
+"🍊":{id:["Kulitnya mudah dikupas.","Buah ini berbentuk bulat dan berwarna oranye."],en:["Its peel is easy to remove.","This round fruit is orange."]},
+"🍉":{id:["Kulitnya hijau, tetapi bagian dalamnya merah.","Buah besar ini banyak mengandung air."],en:["Its skin is green, but the inside is red.","This large fruit has lots of water."]},
+"🍇":{id:["Buah-buah kecil ini tumbuh bergerombol.","Warnanya bisa ungu atau hijau."],en:["These small fruits grow in clusters.","They can be purple or green."]},
+"🐱":{id:["Hewan ini mengeong.","Ia suka mengejar tikus."],en:["This animal meows.","It likes to chase mice."]},
+"🐶":{id:["Hewan ini menggonggong.","Ia sering disebut sahabat manusia."],en:["This animal barks.","It is often called man's best friend."]},
+"🐟":{id:["Hewan ini hidup dan berenang di air.","Ia bernapas menggunakan insang."],en:["This animal lives and swims in water.","It breathes through gills."]},
+"🐔":{id:["Hewan ini berkokok pada pagi hari.","Betinanya dapat menghasilkan telur."],en:["This animal crows in the morning.","The female can lay eggs."]},
+"🐮":{id:["Hewan ini berbunyi moo.","Susu dapat diperoleh dari hewan ini."],en:["This animal says moo.","Milk comes from this animal."]},
+"🚗":{id:["Kendaraan ini memiliki empat roda.","Biasanya digunakan keluarga untuk bepergian."],en:["This vehicle has four wheels.","Families often use it to travel."]},
+"🚌":{id:["Kendaraan besar ini mengangkut banyak penumpang.","Kendaraan ini biasanya berhenti di halte."],en:["This large vehicle carries many passengers.","It usually stops at bus stops."]},
+"🚲":{id:["Kendaraan ini memiliki dua roda dan pedal.","Kamu mengayuhnya agar bisa berjalan."],en:["This vehicle has two wheels and pedals.","You pedal it to make it move."]},
+"✈️":{id:["Kendaraan ini memiliki sayap.","Ia membawa penumpang terbang di langit."],en:["This vehicle has wings.","It carries passengers through the sky."]},
+"🚢":{id:["Kendaraan besar ini berlayar di laut.","Penumpang atau barang bisa dibawa di atasnya."],en:["This large vehicle sails on the sea.","It can carry passengers or cargo."]},
+"📚":{id:["Benda ini memiliki banyak halaman.","Kamu bisa membaca cerita atau belajar darinya."],en:["This item has many pages.","You can read stories or learn from it."]},
+"✏️":{id:["Benda ini digunakan untuk menulis.","Ujungnya bisa diraut jika sudah tumpul."],en:["This item is used for writing.","Its tip can be sharpened when dull."]},
+"🎒":{id:["Benda ini dipakai di punggung.","Buku dan alat sekolah bisa dibawa di dalamnya."],en:["This item is worn on your back.","Books and school supplies can be carried inside."]},
+"⚽":{id:["Benda ini berbentuk bulat.","Kamu bisa menendangnya saat bermain."],en:["This item is round.","You can kick it when playing."]},
+"🏠":{id:["Tempat ini memiliki pintu dan jendela.","Keluarga tinggal dan beristirahat di sini."],en:["This place has doors and windows.","Families live and rest here."]},
+"🌳":{id:["Tumbuhan ini memiliki batang dan banyak daun.","Kita bisa berteduh di bawahnya."],en:["This plant has a trunk and many leaves.","We can rest in its shade."]},
+"🌷":{id:["Tumbuhan ini memiliki kelopak yang cantik.","Banyak orang menaruhnya di dalam vas."],en:["This plant has beautiful petals.","People often put it in a vase."]},
+"☀️":{id:["Benda langit ini tampak pada siang hari.","Cahayanya membuat bumi terasa hangat."],en:["This object appears in the daytime sky.","Its light makes Earth feel warm."]},
+"🌙":{id:["Benda langit ini tampak pada malam hari.","Bentuknya kadang terlihat seperti sabit."],en:["This object appears in the night sky.","Sometimes it looks like a crescent."]},
+"⭐":{id:["Benda langit ini tampak berkelap-kelip.","Kita bisa melihat banyak benda ini pada malam cerah."],en:["This object twinkles in the sky.","We can see many of them on a clear night."]},
+"🍰":{id:["Makanan ini rasanya manis.","Biasanya makanan ini dipotong dan disajikan saat ulang tahun."],en:["This food tastes sweet.","It is often sliced and served at birthdays."]},
+"🥛":{id:["Minuman ini berwarna putih.","Minuman ini sering dituangkan ke dalam gelas."],en:["This drink is white.","It is often poured into a glass."]},
+"🍦":{id:["Makanan penutup ini disajikan dingin.","Makanan ini mudah meleleh jika dibiarkan."],en:["This dessert is served cold.","It melts if left out."]},
+"🧢":{id:["Benda ini dipakai di kepala.","Benda ini bisa melindungi kepala dari sinar matahari."],en:["This item is worn on the head.","It can protect your head from the sun."]},
+"👟":{id:["Benda ini dipakai di kaki.","Kamu memakainya saat berjalan atau berolahraga."],en:["This item is worn on your feet.","You wear it when walking or exercising."]}
+};
+
 function renderWriting(area){
 const target=pickUnseen("pippo-writing",langData(),item=>item[0]);
 const word=target[0];
+let incorrectAttempts=0;
 let answer=word;
 let prompt;
 let modelText="";
+let riddleClues=null;
 
 if(selectedLevel===1){
 answer=word.charAt(0);
@@ -2411,22 +2458,36 @@ prompt=lang==="id"?"Salin kata pada contoh ke dalam kotak.":"Copy the word from 
 modelText=word;
 }else if(selectedLevel===4){
 prompt=lang==="id"?"Lihat gambarnya, lalu tulis nama benda itu.":"Look at the picture, then write the object's name.";
+}else if(selectedLevel===5){
+answer=word;
+riddleClues=writingRiddles[target[1]][lang];
+prompt=lang==="id"?"Tebak bendanya dari dua petunjuk, lalu tulis namanya!":"Guess the object from two clues, then write its name!";
 }else{
-answer=lang==="id"?`Saya suka ${word}.`:`I like ${word}.`;
-prompt=lang==="id"?"Buatlah satu kalimat sederhana tentang gambar ini.":"Write a simple sentence about this picture.";
+answer=word;
 }
 
-currentQuestionText=prompt;
+currentQuestionText=riddleClues?`${prompt} ${riddleClues.join(" ")}`:prompt;
 document.getElementById("question").textContent=prompt;
 
 const exercise=document.createElement("form");
 exercise.className="writing-exercise";
+if(riddleClues){
+const clues=document.createElement("div");
+clues.className="writing-clues";
+riddleClues.forEach((clue,index)=>{
+const clueElement=document.createElement("div");
+clueElement.textContent=`🔎 ${lang==="id"?"Petunjuk":"Clue"} ${index+1}: ${clue}`;
+clues.appendChild(clueElement);
+});
+exercise.appendChild(clues);
+}else{
 const picture=document.createElement("div");
 picture.className="writing-picture";
 picture.textContent=target[1];
 picture.setAttribute("role","img");
 picture.setAttribute("aria-label",word);
 exercise.appendChild(picture);
+}
 
 if(modelText){
 const model=document.createElement("div");
@@ -2464,10 +2525,18 @@ feedback("🐧 "+(lang==="id"?"Bagus! Tulisanmu benar!":"Great! Your writing is 
 celebrateSmall();
 setTimeout(nextQuestion,900);
 }else{
-loseLife();
+incorrectAttempts++;
+if(lives>1)loseLife();
+if(incorrectAttempts>=3){
+input.disabled=true;
+submit.disabled=true;
+feedback("✍️ "+(lang==="id"?`Kunci jawaban: ${answer}. Lanjut ke soal berikutnya!`:`Answer: ${answer}. Moving to the next question!`));
+setTimeout(nextQuestion,1800);
+}else{
 feedback("✍️ "+(lang==="id"?"Belum tepat, coba tulis lagi!":"Not quite, try writing it again!"));
 input.focus();
 input.select();
+}
 }
 });
 
@@ -3016,7 +3085,7 @@ lumi:{char:"🐰",cls:"scene-lumi",items:["🥕","🌼","⭐"]},
 nara:{char:"🐿️",cls:"scene-nara",items:["🌰","🍂","⭐"]},
 bimo:{char:"🐻",cls:"scene-bimo",items:["🍯","🌳","⭐"]},
 sky:{char:"🦅",cls:"scene-sky",items:["☁️","🪶","⭐"]},
-luna:{char:"🐢",cls:"scene-luna",items:["🌿","🌸","⭐"]},
+luna:{char:"🐱",cls:"scene-luna",items:["🌿","🌸","⭐"]},
 pippo:{char:"🐧",cls:"scene-pippo",items:["✏️","📖","⭐"]}
 };
 
